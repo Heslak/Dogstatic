@@ -88,8 +88,13 @@ class DogListViewController: UIViewController {
     }
     
     func fillWithData() {
-        tableView.reloadData()
-        refreshControl.endRefreshing()
+        UIView.transition(with: tableView, duration: 0.3,
+                       options: .transitionCrossDissolve,
+                       animations: {
+            self.tableView.reloadData()
+        }, completion: { _ in
+            self.refreshControl.endRefreshing()
+        })
     }
     
     func showErrorAlert() {
